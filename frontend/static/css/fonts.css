@@ -1,0 +1,265 @@
+/* Inter Font Face Declarations */
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-Thin.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-ThinItalic.otf') format('opentype');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-ExtraLight.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-ExtraLightItalic.otf') format('opentype');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-LightItalic.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-Italic.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-MediumItalic.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-SemiBold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-SemiBoldItalic.otf') format('opentype');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-BoldItalic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-ExtraBold.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-ExtraBoldItalic.otf') format('opentype');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/text/Inter 2/Inter-BlackItalic.otf') format('opentype');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Enhanced font usage with Montserrat family */
+body {
+    font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimized font weights for different elements */
+h1 {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+h2 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+h3 {
+    font-weight: 500;
+    letter-spacing: -0.005em;
+}
+
+h4, h5, h6 {
+    font-weight: 500;
+    letter-spacing: -0.005em;
+}
+
+.logo-text {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.nav-tab {
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+.btn, button {
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.hero-title {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    font-variant: normal;
+}
+
+.feature-number {
+    font-weight: 800; /* ExtraBold */
+}
+
+.step h3 {
+    font-weight: 600; /* SemiBold */
+}
+
+.step p {
+    font-weight: 400; /* Regular */
+    line-height: 1.6;
+}
+
+.daily-task-card h4 {
+    font-weight: 700; /* Bold */
+}
+
+.panel-header h4,
+.panel-header-new h4 {
+    font-weight: 600; /* SemiBold */
+}
+
+.task-input,
+.task-input-centered,
+.ai-chat-input {
+    font-weight: 400; /* Regular */
+    line-height: 1.5;
+}
+
+.message-content {
+    font-weight: 400; /* Regular */
+    line-height: 1.5;
+}
+
+.quick-question-btn {
+    font-weight: 500; /* Medium */
+}
+
+/* Subtle text elements */
+small, .message-time, .file-info {
+    font-weight: 400; /* Regular */
+    opacity: 0.8;
+}
+
+/* Emphasized text */
+strong, .progress-text, .progress-percentage {
+    font-weight: 600; /* SemiBold */
+}
+
+/* Light weight for subtle elements */
+.upload-placeholder small,
+.results-placeholder p {
+    font-weight: 300; /* Light */
+}
+
+/* Extra emphasis for important elements */
+.cta-button,
+.check-errors-btn,
+.check-errors-btn-new {
+    font-weight: 600; /* SemiBold */
+}
+
+/* Ensure proper font loading fallback */
+@supports not (font-variation-settings: normal) {
+    body {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+}

@@ -1,0 +1,223 @@
+/* Design Tokens for glassmorphism and purple scene */
+:root {
+    --bg-start: #1a0b2e;
+    --bg-end: #3a1767;
+    --glow-1: rgba(196, 57, 189, 0.267);
+    --glow-2: rgba(196, 57, 189, 0.527);
+    --glow-3: rgba(196, 57, 189, 0.26);
+
+    --glass-bg: rgba(255, 255, 255, 0.048);
+    --glass-stroke: rgba(255, 255, 255, 0.18);
+    --glass-stroke-strong: rgba(255, 255, 255, 0.28);
+    --glass-radius: 20px;
+    --glass-blur: 18px;
+    --glass-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+
+    --text-primary: #eceaf1;
+    --text-secondary: rgba(236, 234, 241, 0.75);
+
+    /* Animated 45° grid settings */
+    --grid-line-color: rgba(166, 46, 190, 0.048);
+    --grid-cell: 200px;
+    /* расстояние между линиями */
+    --grid-line: 4px;
+    /* толщина линии */
+    --grid-speed: 15s;
+    /* скорость движения сетки */
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: radial-gradient(1200px 800px at 20% 80%, var(--bg-start) 0%, #0f082028 60%) fixed,
+        linear-gradient(135deg, var(--bg-start), var(--bg-end)) fixed;
+    min-height: 100vh;
+    color: var(--text-primary);
+    overflow-x: hidden;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-optical-sizing: auto;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(600px 420px at 18% 78%, var(--glow-1), transparent 60%),
+        radial-gradient(520px 360px at 82% 22%, var(--glow-2), transparent 60%),
+        radial-gradient(560px 420px at 42% 46%, var(--glow-3), transparent 60%);
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Moving 45-degree thin grid overlay */
+body::after {
+    content: '';
+    position: fixed;
+    /* параллакс: слой движется вместе со страницей */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    /* над ::before, но под контентом */
+    background-image:
+        repeating-linear-gradient(45deg,
+            var(--grid-line-color) 0,
+            var(--grid-line-color) var(--grid-line),
+            transparent var(--grid-line),
+            transparent var(--grid-cell)),
+        repeating-linear-gradient(-45deg,
+            var(--grid-line-color) 0,
+            var(--grid-line-color) var(--grid-line),
+            transparent var(--grid-line),
+            transparent var(--grid-cell));
+    background-size: auto;
+    animation: diagonalGridMove var(--grid-speed) linear infinite;
+}
+
+@keyframes diagonalGridMove {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+
+    100% {
+        background-position: calc(2 * var(--grid-cell)) var(--grid-cell), calc(2 * var(--grid-cell)) calc(-2 * var(--grid-cell));
+    }
+}
+
+/* 
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+} */
+
+/* Light Theme Styles */
+body.light-theme {
+    background: linear-gradient(135deg, #7d5fff 0%, #b44cff 100%) !important;
+    color: #2a2a2a !important;
+}
+
+body.light-theme::before {
+    background:
+        radial-gradient(600px 420px at 15% 78%, rgba(125, 95, 255, 0.18), transparent 60%),
+        radial-gradient(560px 380px at 85% 20%, rgba(180, 76, 255, 0.18), transparent 60%),
+        radial-gradient(540px 420px at 42% 46%, rgba(255, 255, 255, 0.25), transparent 65%) !important;
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+    background: radial-gradient(1200px 800px at 20% 80%, #1a0b2e 0%, #0f0820 60%) fixed,
+        linear-gradient(135deg, var(--bg-start), var(--bg-end)) fixed !important;
+    color: var(--text-primary) !important;
+}
+
+body.dark-theme::before {
+    background:
+        radial-gradient(700px 700px at 0% 100%, var(--glow-1), transparent 100%),
+        radial-gradient(700px 700px at 100% 0%, var(--glow-2), transparent 80%),
+        radial-gradient(800px 620px at 34% 10%, var(--glow-3), transparent 60%),
+        radial-gradient(800px 620px at 75% 105%, var(--glow-3), transparent 50%) !important;
+}
+
+/* Liquid Glass Utilities (to be reused via selectors in styles.css) */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-stroke);
+    border-radius: var(--glass-radius);
+    box-shadow: var(--glass-shadow);
+    color: var(--text-primary);
+    position: relative;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+        radial-gradient(120px 100px at 20% 15%, rgba(255, 255, 255, 0.35), transparent 60%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+    mix-blend-mode: screen;
+    opacity: 0.6;
+}
+
+.glass-card--elevated {
+    border-color: var(--glass-stroke-strong);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+}
+
+/* Input-like glass */
+.glass-input {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--glass-stroke);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border-radius: 18px;
+    padding: 0.85rem 1rem;
+    color: var(--text-secondary);
+}
+
+/* Circular mic button */
+.mic-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06));
+    border: 1px solid var(--glass-stroke-strong);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), inset 0 0 18px rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+}
+
+.mic-button:hover {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45), inset 0 0 22px rgba(255, 255, 255, 0.08);
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, var(--bg-end), var(--glow-1));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, var(--glow-2), var(--glow-1));
+}
+
+body.light-theme ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.199);
+}
+
+body.light-theme ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #7d5fff, #b44cff);
+}

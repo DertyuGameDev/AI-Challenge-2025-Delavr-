@@ -1,0 +1,26 @@
+/* Main CSS File - Imports all component styles */
+
+/* Legacy styles - loaded first so they can be overridden */
+@import url('styles.css');
+
+/* Core styles */
+@import url('css/variables.css');
+@import url('css/fonts.css');
+@import url('css/base.css');
+
+/* Component styles */
+@import url('css/header.css');
+@import url('css/chatbot.css');
+@import url('css/profile.css');
+
+/* Horizontal scroll for results areas where content can overflow */
+.results-area-new {
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+/* Also enable horizontal scroll in the quick check result block on the home tab */
+.quick-result {
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}

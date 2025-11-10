@@ -1,0 +1,87 @@
+/* New Color Palette - Blue to Green with Terracotta accents */
+:root {
+    /* Primary gradient: Blue to Teal */
+    --primary-start: #4a90e2;
+    --primary-end: #50c9a9;
+    
+    /* Secondary gradient: Teal to Green */
+    --secondary-start: #50c9a9;
+    --secondary-end: #7ed321;
+    
+    /* Accent colors with terracotta */
+    --accent-warm: #d4a574;
+    --accent-earth: #b8956a;
+    
+    /* Muted versions for subtle effects */
+    --primary-muted: rgba(74, 144, 226, 0.6);
+    --secondary-muted: rgba(80, 201, 169, 0.6);
+    --accent-muted: rgba(212, 149, 116, 0.6);
+    
+    /* Very subtle versions for backgrounds */
+    --primary-subtle: rgba(74, 144, 226, 0.1);
+    --secondary-subtle: rgba(80, 201, 169, 0.1);
+    --accent-subtle: rgba(212, 149, 116, 0.1);
+    
+    /* Panel Header Colors - Easy to customize */
+    --panel-header-start: #3371c2;  /* Blue */
+    --panel-header-end: #9d22ce;    /* Dark Red */
+    --panel-header-text: #ffffff;   /* White text */
+    
+    /* Alternative color schemes (uncomment to use) */
+    /* Ocean Blue Theme */
+    /* --panel-header-start: #0ea5e9; */
+    /* --panel-header-end: #3b82f6; */
+    
+    /* Sunset Theme */
+    /* --panel-header-start: #f59e0b; */
+    /* --panel-header-end: #ef4444; */
+    
+    /* Forest Theme */
+    /* --panel-header-start: #10b981; */
+    /* --panel-header-end: #059669; */
+    
+    /* Rose Theme */
+    /* --panel-header-start: #ec4899; */
+    /* --panel-header-end: #be185d; */
+}
+
+/* Common animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutRight {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+@keyframes messageSlide {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes typingDot {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-10px); opacity: 1; }
+}

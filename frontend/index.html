@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathSolver - Проверка решений</title>
+
+    <link rel="stylesheet" href="static/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body,
+        button,
+        input,
+        textarea,
+        select {
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, sans-serif;
+        }
+    </style>
+    <!-- <script type="text/javascript" src="static/navigation.js"></script> -->
+    <!-- <script type="text/javascript" src="static/script.js"></script> -->
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ],
+                displayMath: [
+                    ['$$', '$$'],
+                    ['\\[', '\\]']
+                ],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-text">MathSolver</span>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="main">Главная</button>
+                <button class="nav-tab" data-tab="solve">Решить</button>
+            </nav>
+            <div class="header-controls">
+                <div class="user-profile" id="userProfile">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Home Tab Content -->
+                <div class="tab-content" id="mainTab">
+                    <div class="home-layout">
+                        <!-- Hero Section -->
+                        <section class="hero-section">
+                            <div class="hero-content">
+                                <h1 class="hero-title">Хватит бояться ошибок — начните их понимать</h1>
+                                <p class="hero-subtitle">Математический тренажер с ИИ, который видит ваши ошибки насквозь. Решайте уравнения с персональной обратной связью</p>
+                                <button class="cta-button" id="startSolvingBtn">
+                                <span>Решать</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            </div>
+                            <div class="hero-visual">
+                                <div class="math-animation">
+                                    <div class="formula">x² - 5x + 6 = 0</div>
+                                    <div class="arrow">→</div>
+                                    <div class="solution">(x-2)(x-3) = 0</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- How It Works Section -->
+                        <section class="how-it-works">
+                            <h2>КАК ЭТО РАБОТАЕТ?</h2>
+                            <div class="steps-grid">
+                                <div class="step">
+                                    <div class="step-icon">
+                                        <i class="fas fa-edit"></i>
+                                    </div>
+                                    <h3>1. Загрузите решение</h3>
+                                    <p>Сфотографируйте или отсканируйте ваше рукописное решение</p>
+                                </div>
+                                <div class="step">
+                                    <div class="step-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <h3>2. ИИ анализирует</h3>
+                                    <p>Искусственный интеллект находит ошибки и неточности в вашем решении</p>
+                                </div>
+                                <div class="step">
+                                    <div class="step-icon">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </div>
+                                    <h3>3. Получите подсказки</h3>
+                                    <p>Система даст персональные рекомендации для исправления ошибок</p>
+                                </div>
+                                <div class="step">
+                                    <div class="step-icon">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <h3>4. Улучшайтесь</h3>
+                                    <p>Отслеживайте прогресс и становитесь лучше с каждым решением</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Daily Challenge & Quick Start -->
+                        <section class="bottom-section">
+                            <div class="daily-challenge">
+                                <h3>Решите Daily</h3>
+                                <div class="daily-task-card">
+                                    <div class="task-badge">
+                                        <i class="fas fa-star"></i>
+                                        <span>+5 звезд</span>
+                                    </div>
+                                    <div class="task-content">
+                                        <h4>Задача дня</h4>
+                                        <p id="dailyTaskText">Загрузка задачи...</p>
+                                    </div>
+                                    <button class="solve-daily-btn">Решить</button>
+                                </div>
+                            </div>
+
+                            <div class="quick-start">
+                                <div class="quick-panel">
+                                    <h4>Ваше решение</h4>
+                                    <div class="quick-upload" id="quickUpload">
+                                        <i class="fas fa-camera"></i>
+                                        <p>Загрузите фото решения</p>
+                                    </div>
+                                </div>
+                                <div class="quick-panel">
+                                    <h4>Проверка решения</h4>
+                                    <div class="quick-result" id="quickResult">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Solve Tab Content -->
+                <div class="tab-content" id="solveTab" style="display: none;">
+                    <div class="solve-container">
+                        <!-- Centered Task Input Section -->
+                        <section class="task-input-section-new">
+                            <h3 class="task-input-title">Что сегодня решим?</h3>
+                            <div class="task-input-container">
+                                <textarea class="task-input-field" id="taskInput" placeholder="Введите условие задачи..." rows="1"></textarea>
+                                <div class="task-input-buttons">
+                                    <button class="random-task-btn" title="Случайная задача">
+                                    <i class="fas fa-dice"></i>
+                                    <span>Случайная</span>
+                                </button>
+                                    <button class="task-library-btn" id="taskLibraryBtn" title="Библиотека задач">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                </div>
+                            </div>
+                            <!-- Информация о задаче (сложность и звезды) -->
+                            <div class="task-info-box" id="taskInfoBox" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(20, 20, 20, 0.8); border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; gap: 2rem; align-items: center;">
+                                    <div>
+                                        <strong>Сложность:</strong> <span id="taskDifficultyDisplay">-</span>
+                                    </div>
+                                    <div id="taskStarsDisplay" style="display: none;">
+                                        <strong>Начислено звезд:</strong> ⭐ <span id="taskStarsCount">0</span>
+                                    </div>
+                                    <div>
+                                        <strong>Прогресс:</strong> <span id="taskProgressDisplay">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Solution Panels -->
+                        <section class="solution-section-new">
+                            <div class="solution-panels-new">
+                                <!-- Left Panel - File Upload with Preview -->
+                                <div class="solution-panel-new left-panel-new">
+                                    <div class="panel-header-new">
+                                        <h4>Ваше решение</h4>
+                                    </div>
+                                    <div class="file-upload-area-new" id="fileUploadArea">
+                                        <div class="upload-placeholder" id="uploadPlaceholder">
+                                            <i class="fas fa-plus upload-icon"></i>
+                                            <p>Добавьте файл с решением</p>
+                                            <small>Поддерживаются: PDF, JPG, PNG, TXT</small>
+                                        </div>
+                                        <div class="file-preview" id="filePreview" style="display: none;">
+                                            <img id="imagePreview" style="display: none;" />
+                                            <canvas id="pdfPreview" style="display: none;"></canvas>
+                                            <div class="file-info" id="fileInfo"></div>
+                                        </div>
+                                        <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png,.txt" hidden>
+                                    </div>
+
+                                    <!-- Progress Bar for Checking -->
+                                    <div class="check-progress" id="checkProgress" style="display: none;">
+                                        <div class="progress-label">Проверка решения...</div>
+                                        <div class="progress-bar-new">
+                                            <div class="progress-fill-new" id="progressFill"></div>
+                                        </div>
+                                        <div class="progress-percentage" id="progressPercentage">0%</div>
+                                        
+                                        <!-- Google Dinosaur Game -->
+                                        <div class="dino-game-container" id="dinoGameContainer">
+                                            <div class="game" id="dinoGame">
+                                                <div class="dino" id="dino"></div>
+                                                <div class="cactus" id="cactus"></div>
+                                                <div class="dino-score" id="dinoScore">Счет: 0</div>
+                                            </div>
+                                            <div class="dino-instructions">Нажмите ПРОБЕЛ или ↑ для прыжка</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Panel - Results -->
+                                <div class="solution-panel-new right-panel-new">
+                                    <div class="panel-header-new">
+                                        <h4>Проверка решения</h4>
+                                    </div>
+                                    <div class="results-area-new" id="resultsArea">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Check Button -->
+                            <div class="check-button-container">
+                                <button class="check-errors-btn-new" id="checkErrorsBtn" disabled>
+                                <span class="btn-text">Найти ошибки</span>
+                                <div class="loading-spinner" id="loadingSpinner">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </button>
+                            </div>
+
+                            <!-- Reveal Hint Cards -->
+                            <div class="reveal-hints-section" id="revealHintsSection">
+                                <div class="reveal-hint-card locked" data-cost="5">
+                                    <div class="locked-layer">
+                                        <i class="fas fa-star"></i>
+                                        <span>5 звезд</span>
+                                    </div>
+                                    <div class="hint-latex-content">
+                                        <p>Для уравнения $ax^2 + bx + c = 0$ используйте формулу дискриминанта:</p>
+                                        <p>$$\Delta = b^2 - 4ac$$</p>
+                                        <p>Если $\Delta \ge 0$, то корни равны $$x_{1,2} = \frac{-b \pm \sqrt{\Delta}}{2a}$$</p>
+                                    </div>
+                                </div>
+
+                                <div class="reveal-hint-card locked" data-cost="8">
+                                    <div class="locked-layer">
+                                        <i class="fas fa-star"></i>
+                                        <span>8 звезд</span>
+                                    </div>
+                                    <div class="hint-latex-content">
+                                        <p>Производная степенной функции вычисляется как:</p>
+                                        <p>$$\frac{d}{dx}\left(x^n\right) = n\cdot x^{n-1}$$</p>
+                                        <p>Для сложной функции примените правило цепочки: $$\frac{d}{dx}f(g(x)) = f'(g(x))\cdot g'(x)$$</p>
+                                    </div>
+                                </div>
+
+                                <div class="reveal-hint-card locked" data-cost="10">
+                                    <div class="locked-layer">
+                                        <i class="fas fa-star"></i>
+                                        <span>10 звезд</span>
+                                    </div>
+                                    <div class="hint-latex-content">
+                                        <p>Определённый интеграл можно оценивать через первообразную $F(x)$:</p>
+                                        <p>$$\int_a^b f(x)\,dx = F(b) - F(a)$$</p>
+                                        <p>Если нужно разложить интеграл, используйте свойство $$\int_a^b (f(x) + g(x))\,dx = \int_a^b f(x)\,dx + \int_a^b g(x)\,dx$$</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Add Task Modal -->
+        <div class="modal" id="addTaskModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Добавить задачу</h3>
+                    <button class="close-modal" id="closeModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="task-input-field">
+                        <label>Условие задачи:</label>
+                        <textarea id="newTaskInput" placeholder="Введите условие новой задачи..."></textarea>
+                    </div>
+                    <div class="daily-task-section">
+                        <h4>Daily</h4>
+                        <div class="daily-task highlighted">
+                            <div class="task-points">
+                                <i class="fas fa-star"></i> +5 звезд
+                            </div>
+                            <div class="task-description">Решите уравнение дня</div>
+                        </div>
+                    </div>
+                    <div class="tasks-lists">
+                        <div class="solved-tasks">
+                            <h5>Решенные:</h5>
+                            <div class="task-item solved">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Квадратные уравнения</span>
+                            </div>
+                            <div class="task-item solved">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Системы уравнений</span>
+                            </div>
+                        </div>
+                        <div class="unsolved-tasks">
+                            <h5>Нерешенные:</h5>
+                            <div class="task-item unsolved">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Интегралы</span>
+                            </div>
+                            <div class="task-item unsolved">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Производные</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" id="cancelBtn">Отмена</button>
+                    <button class="btn-primary" id="saveTaskBtn">Решить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Library Modal -->
+    <div class="task-library-overlay" id="taskLibraryOverlay" style="display: none;">
+        <div class="task-library-modal">
+            <div class="task-library-header">
+                <h3>Библиотека задач</h3>
+                <button class="close-library-btn" id="closeLibraryBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="task-library-filters">
+                <select class="task-filter-select" id="categoryFilter">
+                    <option value="">Все темы</option>
+                </select>
+                <select class="task-filter-select" id="difficultyFilter">
+                    <option value="">Все уровни</option>
+                </select>
+            </div>
+
+            <div class="task-library-content">
+                <!-- Daily Task Section -->
+                <div class="library-section">
+                    <h4 class="library-section-title">Daily задача</h4>
+                    <div class="daily-task-item" data-task-type="daily" style="padding: 1.5rem; min-height: 120px;">
+                        <div class="task-badge-small">
+                            <i class="fas fa-star"></i>
+                            <span>+5 звезд</span>
+                        </div>
+                        <div class="task-text" style="font-size: 1rem; line-height: 1.6; margin-top: 1rem; white-space: normal; word-wrap: break-word;">Загрузка задачи...</div>
+                    </div>
+                </div>
+
+                <!-- Solved Tasks Section -->
+                <div class="library-section">
+                    <h4 class="library-section-title">Решенные задачи</h4>
+                    <div class="solved-tasks-grid" id="solvedTasksGrid">
+                        <!-- Solved tasks will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Unsolved Tasks Section -->
+                <div class="library-section">
+                    <h4 class="library-section-title">Доступные задачи</h4>
+                    <div class="unsolved-tasks-grid" id="unsolvedTasksGrid">
+                        <!-- Unsolved tasks will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- AI Chat Bot -->
+    <div class="ai-chat-toggle" id="aiChatToggle">
+        <div class="robot-icon">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="chat-notification" id="chatNotification" style="display: none;">
+            <span>1</span>
+        </div>
+    </div>
+
+    <div class="ai-chat-overlay" id="aiChatOverlay" style="display: none;">
+        <div class="ai-chat-container">
+            <div class="ai-chat-header">
+                <div class="ai-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="ai-info">
+                    <h4>MathBot AI</h4>
+                    <span class="ai-status">Готов помочь с математикой</span>
+                </div>
+                <button class="close-chat-btn" id="closeChatBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="ai-chat-messages" id="aiChatMessages">
+                <div class="ai-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Привет! Я MathBot AI 🤖</p>
+                        <p>Могу помочь с решением математических задач, объяснить формулы или дать подсказки. Просто напишите свой вопрос!</p>
+                        <div class="message-time">Сейчас</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-chat-input-area">
+                <div class="quick-questions">
+                    <button class="quick-question-btn" data-question="Объясни как решать квадратные уравнения">
+                        Квадратные уравнения
+                    </button>
+                    <button class="quick-question-btn" data-question="Помоги с производными">
+                        Производные
+                    </button>
+                    <button class="quick-question-btn" data-question="Как найти интеграл?">
+                        Интегралы
+                    </button>
+                </div>
+
+                <div class="chat-input-container" style="display: flex; align-items: flex-end; gap: 0.5rem;">
+                    <textarea class="ai-chat-input" id="aiChatInput" placeholder="Напишите ваш вопрос..." rows="1"></textarea>
+                    <button class="send-message-btn" id="sendMessageBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Profile Modal -->
+    <div class="profile-overlay" id="profileOverlay" style="display: none;">
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="profile-info">
+                    <h3>Математик</h3>
+                    <span class="profile-level">Уровень 5 • Продвинутый</span>
+                </div>
+                <button class="close-profile-btn" id="closeProfileBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="profile-content">
+                <!-- Statistics Cards - только задачи и звездочки -->
+                <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="profileSolvedTasks">0</div>
+                            <div class="stat-label">Решено задач</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="profileStars">0</div>
+                            <div class="stat-label">Звездочек</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/api.js"></script>
+    <script src="static/js/user-data.js"></script>
+    <script src="static/js/app.js"></script>
+    <script src="static/js/chatbot.js"></script>
+    <script src="static/js/profile.js"></script>
+    <script src="static/navigation.js"></script>
+    <script src="static/js/task-manager.js"></script>
+
+    <script>
+        // Простая проверка навигации
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, checking navigation...');
+            taskManager.initialize();
+            
+            // Загружаем daily задачу на главной странице
+            loadDailyTaskOnMainPage();
+            
+            // Проверяем наличие элементов
+            const navTabs = document.querySelectorAll('.nav-tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            console.log('Found nav tabs:', navTabs.length);
+            console.log('Found tab contents:', tabContents.length);
+
+            // Если navigation.js не сработал, добавляем обработчики здесь
+            if (navTabs.length > 0) {
+                navTabs.forEach((tab, index) => {
+                    console.log(`Tab ${index}:`, tab.dataset.tab);
+                    tab.addEventListener('click', function() {
+                        console.log('Tab clicked:', this.dataset.tab);
+                        switchTabSimple(this.dataset.tab);
+                    });
+                });
+            }
+
+            function switchTabSimple(tabName) {
+                console.log('Switching to tab:', tabName);
+
+                // Убираем active у всех табов
+                navTabs.forEach(tab => tab.classList.remove('active'));
+
+                // Скрываем все контенты
+                tabContents.forEach(content => {
+                    content.style.display = 'none';
+                });
+
+                // Показываем нужный контент
+                const targetContent = document.getElementById(tabName + 'Tab');
+                if (targetContent) {
+                    targetContent.style.display = 'block';
+                    console.log('Showed content for:', tabName);
+                } else {
+                    console.error('Content not found for:', tabName + 'Tab');
+                }
+
+                // Активируем нужный таб
+                const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
+                if (activeTab) {
+                    activeTab.classList.add('active');
+                    console.log('Activated tab:', tabName);
+                }
+            }
+
+            // Кнопка "Решать"
+            const startBtn = document.getElementById('startSolvingBtn');
+            if (startBtn) {
+                startBtn.addEventListener('click', () => {
+                    console.log('Start solving clicked');
+                    switchTabSimple('solve');
+                });
+            }
+
+            // Кнопка "Решить Daily"
+            const dailyBtn = document.querySelector('.solve-daily-btn');
+            if (dailyBtn) {
+                dailyBtn.addEventListener('click', () => {
+                    console.log('Daily task clicked');
+                    switchTabSimple('solve');
+                });
+            }
+
+            // Профиль пользователя
+            const userProfile = document.getElementById('userProfile');
+            const profileOverlay = document.getElementById('profileOverlay');
+            const closeProfileBtn = document.getElementById('closeProfileBtn');
+
+            if (userProfile && profileOverlay) {
+                userProfile.addEventListener('click', () => {
+                    console.log('Profile clicked');
+                    profileOverlay.style.display = 'flex';
+                });
+            }
+
+            if (closeProfileBtn && profileOverlay) {
+                closeProfileBtn.addEventListener('click', () => {
+                    console.log('Close profile clicked');
+                    profileOverlay.style.display = 'none';
+                });
+            }
+
+            // Закрытие профиля по клику на overlay
+            if (profileOverlay) {
+                profileOverlay.addEventListener('click', (e) => {
+                    if (e.target === profileOverlay) {
+                        profileOverlay.style.display = 'none';
+                    }
+                });
+            }
+
+            // Инициализация чат-бота
+            if (window.chatbotManager && typeof window.chatbotManager.initialize === 'function') {
+                console.log('Initializing chatbot...');
+                window.chatbotManager.initialize();
+            } else {
+                console.warn('chatbotManager not available');
+            }
+
+
+            // Тестовые кнопки в профиле
+            window.testSolveTask = function() {
+                console.log('Test solve task clicked');
+                alert('Тестовая задача решена! +20 XP');
+            };
+
+            window.testDailyTask = function() {
+                console.log('Test daily task clicked');
+                alert('Daily задача решена! +50 XP');
+            };
+        });
+
+        // Всегда применяем темную тему
+        document.body.classList.add('dark-theme');
+        document.body.classList.remove('light-theme');
+        
+        // Загрузка daily задачи на главной странице
+        async function loadDailyTaskOnMainPage() {
+            try {
+                // Daily задача не зависит от решенных задач, всегда один и тот же на день
+                const task = await getDailyTask([]);
+                const dailyTaskText = document.getElementById('dailyTaskText');
+                if (dailyTaskText && task) {
+                    // Поведение как в библиотеке задач: если выполнена — показываем сообщение,
+                    // иначе показываем полный текст задачи (description/statement)
+                    if (task.completed === true) {
+                        dailyTaskText.textContent = 'Вы уже выполнили ежедневную задачу';
+                    } else {
+                        const taskDescription = task.description || task.statement || 'Задача дня';
+                        dailyTaskText.textContent = taskDescription;
+                    }
+                    // Рендерим LaTeX
+                    if (window.MathJax && window.MathJax.typesetPromise) {
+                        await window.MathJax.typesetPromise([dailyTaskText]);
+                    }
+                }
+            } catch (err) {
+                console.error('Ошибка загрузки daily задачи:', err);
+                const dailyTaskText = document.getElementById('dailyTaskText');
+                if (dailyTaskText) {
+                    dailyTaskText.textContent = 'Не удалось загрузить задачу';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
