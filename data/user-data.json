@@ -1,0 +1,36 @@
+{
+  "solvedTasks": [
+    "1",
+    "3"
+  ],
+  "stars": 4,
+  "dailyTasks": [],
+  "statistics": {
+    "totalSolved": 2,
+    "byCategory": {
+      "algebra": {
+        "solved": 2,
+        "total": 20
+      },
+      "geometry": {
+        "solved": 0,
+        "total": 20
+      },
+      "calculus": {
+        "solved": 0,
+        "total": 20
+      },
+      "probability": {
+        "solved": 0,
+        "total": 20
+      }
+    },
+    "streakDays": 0,
+    "accuracy": 0,
+    "totalXP": 270
+  },
+  "achievements": [
+    "first_steps"
+  ],
+  "lastActivity": 1762803317823
+}
