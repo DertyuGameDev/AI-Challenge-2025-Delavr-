@@ -16,6 +16,6 @@ TOKEN2=...
 
 1. Запустить Docker Desktop
 2. Зайти с помощью команды `cd` из командной строки в папку с репозиторием
-3. Написать `docker compose up` в консоли
+3. Написать `docker-compose up` в консоли
 4. Нажать на localhost:8081 в вкладке `Containers`
 
