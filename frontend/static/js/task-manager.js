@@ -912,8 +912,8 @@ async function displayResults(result) {
     const input = document.getElementById('aiChatInput');
     const btn = document.getElementById('sendMessageBtn');
     input.placeholder = 'Нужна одна посылка для разблокировки...'
-    input.disabled = true
-    btn.disabled = true
+    input.disabled = false
+    btn.disabled = false
     // console.log('[TaskManager] Результат отображен. Процент:', percent);
 }
 
@@ -2007,5 +2007,6 @@ window.taskManager = {
         return lastCompletedTask;
     }
 };
+
 
 // console.log('[TaskManager] script loaded — ready to initialize.');
