@@ -1,4 +1,4 @@
-[team2prime] Delavr
+[team2prime]  Delavr
 ## MathSolver
 Чтобы запустить приложение через `docker compose` необходимо:
 САМОЕ ГЛАВНОЕ!
